@@ -5,6 +5,8 @@ import java.util.List;
 import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import p.minn.cas.service.IAccountService;
 import p.minn.privilege.entity.User;
 import p.minn.privilege.repository.RoleDao;
 import p.minn.privilege.repository.UserDao;
@@ -14,7 +16,7 @@ import p.minn.privilege.repository.UserDao;
  * @QQ:394286006
  */
 @Service
-public class AccountService {
+public class AccountService implements IAccountService{
 
 	@Autowired
 	private UserDao userDao;
@@ -27,7 +29,7 @@ public class AccountService {
 		return userDao.findByLoginName(loginName);
 	}
 
-	private String getCurrentUserName() {
+	public String getCurrentUserName() {
 		User user = (User) SecurityUtils.getSubject().getPrincipal();
 		return user.getName();
 	}

@@ -24,7 +24,12 @@
 	<logger name="java.sql" level="DEBUG"/>
 	<logger name="com.ibatis" level="DEBUG"/>
 	<logger name="org.springframework" level="INFO"/>
-	
+   <logger name="p.minn.shiro" level="DEBUG">
+      <appender-ref ref="console" />
+   </logger>
+   <logger name="org.jasig.cas" level="DEBUG">
+      <appender-ref ref="console" />
+   </logger>
 
 	<root level="DEBUG">
 		<appender-ref ref="console" />

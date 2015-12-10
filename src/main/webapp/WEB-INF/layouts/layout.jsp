@@ -191,10 +191,8 @@ body {
 	});
  
   function logout(){
-	  $.ajax({url: sys_ctx_p+"/account?method=logout",dataType: 'json'}).done(function( data,status ,info) {
-		  window.location.href=sys_ctx_p+"/account"; 
-		  });
-	 }
+	   window.location.href="http://127.0.0.1:8084/cas/logout?service=http://127.0.0.1:8080/admin/logout";
+	}
     </script>
 </body>
 </html>

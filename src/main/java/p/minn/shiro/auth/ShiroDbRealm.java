@@ -16,10 +16,9 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import p.minn.common.utils.Encodes;
+import p.minn.cas.service.IAccountService;
 import p.minn.privilege.entity.User;
 import p.minn.privilege.utils.Constant;
-import p.minn.shiro.service.AccountService;
 /**
  * 
  * @author minn
@@ -30,7 +29,7 @@ import p.minn.shiro.service.AccountService;
 public class ShiroDbRealm extends AuthorizingRealm {
 
 	@Autowired
-	private AccountService accountService;
+	private IAccountService accountService;
 	
 
 	@Override
@@ -40,12 +39,13 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		if (user != null) {
 			Subject cuser=SecurityUtils.getSubject();
 			cuser.getSession().setAttribute(Constant.LOGINUSER, user);
-			byte[] salt = Encodes.decodeHex(user.getSalt());
+			//byte[] salt = UtilEncodes.decodeHex(user.getSalt());
 			return new SimpleAuthenticationInfo(user,
-					user.getPwd(), ByteSource.Util.bytes(salt), getName());
+					user.getPwd(), ByteSource.Util.bytes("111".getBytes()), getName());
 		} else {
 			return null;
 		}
+		
 	}
 
 	@Override
@@ -55,5 +55,11 @@ public class ShiroDbRealm extends AuthorizingRealm {
 		info.addRoles(accountService.getRoleListByUserId(user.getId()));
 		return info;
 	}
+
+	public void setAccountService(IAccountService accountService) {
+		this.accountService = accountService;
+	}
+	
+	
 
 }

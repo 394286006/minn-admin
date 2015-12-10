@@ -43,7 +43,7 @@ function changelanguage(){
 </select>
    </td></tr>
  </table>
-<form action="account" method="post" id="submit_form" name="submit_form" class="form-signin" role="form">
+<form action="login" method="post" id="submit_form" name="submit_form" class="form-signin" role="form">
  <h2 class="form-signin-heading"><sp:message code="login_title"></sp:message></h2>
 <table>
  <tr>
