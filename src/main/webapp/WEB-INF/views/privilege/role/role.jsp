@@ -2,14 +2,15 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     <%@ taglib prefix="sp" uri="http://www.springframework.org/tags" %>
+    <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <html>
 <head></head>
+<meta http-equiv='X-Frame-Options' content='SAMEORIGIN' />
 <body>
 <jsp:include page="../../../common/common.jsp"></jsp:include>
 <input id="menu_title" type="hidden" value=<sp:message code="menu_title"/> >
 
     <div>
-  
      <div style="float:left">
         <table class="flexdata_grid">  </table>
      </div>

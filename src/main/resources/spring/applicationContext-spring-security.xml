@@ -1,0 +1,42 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" 
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx" 
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:sec="http://www.springframework.org/schema/security"
+	xsi:schemaLocation="http://www.springframework.org/schema/context 
+	http://www.springframework.org/schema/context/spring-context-3.0.xsd
+	http://www.springframework.org/schema/beans
+	http://www.springframework.org/schema/beans/spring-beans.xsd
+	http://www.springframework.org/schema/tx
+	http://www.springframework.org/schema/tx/spring-tx-3.0.xsd
+	http://www.springframework.org/schema/aop
+	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
+	http://www.springframework.org/schema/security
+	http://www.springframework.org/schema/security/spring-security-4.0.xsd"
+	default-lazy-init="true">
+
+	<context:component-scan base-package="p.minn.security.auth,p.minn.security.service" />
+    <sec:http auto-config="true"  >   
+     <sec:headers>
+     <sec:frame-options policy="SAMEORIGIN"/>
+     </sec:headers>
+         <sec:intercept-url pattern="/j_spring_security_check" access="permitAll" />
+        <sec:form-login 
+        login-page="/" 
+        login-processing-url="/j_spring_security_check"
+        default-target-url="/idx" 
+        username-parameter="username"
+		password-parameter="password"
+        authentication-failure-url="/error/500.jsp" />
+        <sec:logout logout-success-url="/" />     
+        <sec:csrf disabled="true"/>
+    </sec:http>
+
+	<sec:authentication-manager>
+	  <sec:authentication-provider user-service-ref="securityDbRealm">
+	  </sec:authentication-provider>
+	</sec:authentication-manager>
+
+</beans>

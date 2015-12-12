@@ -1,8 +1,9 @@
 <%@page import="p.minn.privilege.utils.Constant"%>
+<%@page session="true"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
     <%@ taglib prefix="sp" uri="http://www.springframework.org/tags" %>
-
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 
 <script type="text/javascript">
 
@@ -43,7 +44,7 @@ function changelanguage(){
 </select>
    </td></tr>
  </table>
-<form action="login" method="post" id="submit_form" name="submit_form" class="form-signin" role="form">
+<form action="<c:url value='/j_spring_security_check' />" method="post" id="submit_form" name="submit_form" class="form-signin" role="form">
  <h2 class="form-signin-heading"><sp:message code="login_title"></sp:message></h2>
 <table>
  <tr>
@@ -53,6 +54,8 @@ function changelanguage(){
   <tr> <td><sp:message code="login_pwd"></sp:message>:</td><td> <input class="form-control" type="password" id="password" name="password" value="admin" /></td></tr>
  <tr> <td colspan="2" > <input type="submit" class="btn btn-lg btn-primary btn-block" value=<sp:message code="login_action"/> ></td> </tr>
 </table>
+<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
 </form>
 </div>
 </center>

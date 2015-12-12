@@ -13,7 +13,7 @@
 	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/css/**" location="/css/" />
 	<context:component-scan
-		base-package="p.minn.common.aop.webarg,p.minn.privilege.web,p.minn.shiro.web,,p.minn.cas.shiro.web">
+		base-package="p.minn.common.aop.webarg,p.minn.privilege.web,p.minn.security.web">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 		<context:include-filter type="annotation"
@@ -27,7 +27,7 @@
 	</mvc:annotation-driven>
 
 	<aop:config>
-		<aop:pointcut expression="execution(* p.minn.*.web.*Controller.*(..))"
+		<aop:pointcut expression="execution(* p.minn.*.web.*Controller.*(..)) and !execution(* p.minn.security.web.*Controller.*(..))"
 			id="webReturn" />
 		<aop:advisor advice-ref="webReturnProxy" pointcut-ref="webReturn" />
 	</aop:config>

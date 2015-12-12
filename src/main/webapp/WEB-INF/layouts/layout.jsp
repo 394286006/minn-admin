@@ -1,6 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ taglib prefix="sp" uri="http://www.springframework.org/tags" %>
+<%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <style type="text/css">
 
 /*
@@ -128,7 +129,10 @@ body {
         </div>
       </div>
     </div>
-    
+    <form action="logout" method="post" id="logoutForm">
+		<input type="hidden" name="${_csrf.parameterName}"
+			value="${_csrf.token}" />
+	</form>
 
  <script type="text/javascript">
  
@@ -190,8 +194,9 @@ body {
 	   }
 	});
  
+  
   function logout(){
-	   window.location.href="http://127.0.0.1:8084/cas/logout?service=http://127.0.0.1:8080/admin/logout";
+	  document.getElementById("logoutForm").submit();
 	}
     </script>
 </body>
