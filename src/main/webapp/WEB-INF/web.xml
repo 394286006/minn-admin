@@ -8,16 +8,19 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 		    classpath*:/spring/applicationContext-privilege.xml
+		    classpath*:/spring/applicationContext-cas-spring-security.xml
 		     classpath*:/spring/applicationContext-spring-security.xml
+		     
 		</param-value>
 	</context-param>
 	<context-param>
 		<param-name>spring.profiles.default</param-name>
-		<param-value>production</param-value>
+		<param-value>test</param-value>
 	</context-param>
 	<listener>
 		<listener-class>org.springframework.web.context.ContextLoaderListener</listener-class>
 	</listener>
+	
 	<filter>
 		<filter-name>encodingFilter</filter-name>
 		<filter-class>org.springframework.web.filter.CharacterEncodingFilter</filter-class>
@@ -59,6 +62,10 @@
 		<filter-name>springSecurityFilterChain</filter-name>
 		<url-pattern>/*</url-pattern>
 	</filter-mapping>
+	
+	  <listener>
+        <listener-class>org.jasig.cas.client.session.SingleSignOutHttpSessionListener</listener-class>
+    </listener>
 
 <servlet-mapping>
   <servlet-name>default</servlet-name>
@@ -77,6 +84,7 @@
     <servlet-name>default</servlet-name>
     <url-pattern>*.png</url-pattern>
  </servlet-mapping>
+
 	<session-config>
 		<session-timeout>20</session-timeout>
 	</session-config>

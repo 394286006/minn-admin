@@ -129,7 +129,7 @@ body {
         </div>
       </div>
     </div>
-    <form action="logout" method="post" id="logoutForm">
+    <form action="j_spring_cas_security_logout" method="post" id="logoutForm">
 		<input type="hidden" name="${_csrf.parameterName}"
 			value="${_csrf.token}" />
 	</form>
@@ -196,7 +196,8 @@ body {
  
   
   function logout(){
-	  document.getElementById("logoutForm").submit();
+	  window.location.href="http://127.0.0.1:8080/admin/j_spring_cas_security_logout";
+	 // document.getElementById("logoutForm").submit();
 	}
     </script>
 </body>

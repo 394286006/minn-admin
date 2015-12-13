@@ -23,44 +23,9 @@ import p.minn.privilege.service.UserService;
 @RequestMapping("/user")
 public class UserController {
 	
-	private static final String DEFAULT_IDX="index";
 	
 	@Autowired
 	private UserService userService;
-	
-	/*@Autowired
-    private LocaleResolver localeResolver;  
-
-	@RequestMapping(method=RequestMethod.GET)
-	public String defaultIndex(HttpServletRequest req,HttpServletResponse rep, @RequestParam(required=false, defaultValue="zh") String lang){
-		Locale local=new Locale(lang);
-		localeResolver.setLocale(req, rep, local);
-		return DEFAULT_IDX;
-	}
-	
-	
-	@RequestMapping(params="method=index")
-	public String index(HttpServletRequest req,HttpServletResponse rep, @RequestParam(required=false, defaultValue="zh") String lang){
-		return defaultIndex(req,rep,lang);
-	
-	}
-	
-	@RequestMapping(params="method=login")
-	public String login(HttpServletRequest request,HttpSession session,@RequestParam String username,@RequestParam String password){
-		//User user=userService.login(username, password);
-		//session.setAttribute(Constant.LOGINUSER, user);
-		
-		return DEFAULT_IDX;
-	}
-	
-	@RequestMapping(params="method=logout")
-	public Object logout(HttpServletRequest request,HttpSession session){
-		//session.removeAttribute(Constant.LOGINUSER);
-		Subject curuser=SecurityUtils.getSubject();
-		curuser.getSession().removeAttribute(Constant.LOGINUSER);
-		curuser.logout();
-		return DEFAULT_IDX;
-	}*/
 	
 	@RequestMapping(params="method=save")
 	public Object save(@ModelAttribute("user") User user){
