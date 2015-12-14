@@ -9,8 +9,6 @@
 		<param-value>
 		    classpath*:/spring/applicationContext-privilege.xml
 		    classpath*:/spring/applicationContext-cas-spring-security.xml
-		     classpath*:/spring/applicationContext-spring-security.xml
-		     
 		</param-value>
 	</context-param>
 	<context-param>
