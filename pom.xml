@@ -20,6 +20,7 @@
 		<guava.version>17.0</guava.version>
 		<!-- Plugin的属性定义 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+		
 		<java.version>1.6</java.version>
 	</properties>
 
@@ -41,7 +42,11 @@
 			<artifactId>minn-pojo</artifactId>
 			<version>0.0.1</version>
 		</dependency>
-
+		<dependency>
+			<groupId>p.minn</groupId>
+			<artifactId>minn-oauth</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
@@ -66,7 +71,6 @@
 			<artifactId>spring-data-jpa</artifactId>
 			<version>${spring-data-jpa.version}</version>
 		</dependency>
-
 
 		<!-- PERSISTENCE end -->
 
@@ -106,7 +110,7 @@
 			<artifactId>spring-security-web</artifactId>
 			<version>${spring.security.version}</version>
 		</dependency>
-     
+
 		<dependency>
 			<groupId>org.springframework.security</groupId>
 			<artifactId>spring-security-config</artifactId>
@@ -158,7 +162,16 @@
 			<artifactId>xmlsec</artifactId>
 			<version>1.4.3</version>
 		</dependency>
-	
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+			<version>${spring-security-oauth2.version}</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.security.oauth</groupId>
+			<artifactId>spring-security-oauth2</artifactId>
+			<version>${spring-security-oauth2.version}</version>
+		</dependency>
 
 	</dependencies>
 
