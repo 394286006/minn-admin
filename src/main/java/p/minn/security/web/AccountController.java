@@ -42,7 +42,7 @@ public class AccountController {
 	@Autowired
     private LocaleResolver localeResolver;  
 
-	@RequestMapping(value = { "/","idx**"}, method = RequestMethod.GET)
+	@RequestMapping(value = { "/","login**"}, method = RequestMethod.GET)
 	public ModelAndView defaultIndex(HttpServletRequest req,HttpServletResponse rep, @RequestParam(required=false, defaultValue="zh") String lang){
 		Locale local=new Locale(lang);
 		localeResolver.setLocale(req, rep, local);
@@ -73,7 +73,7 @@ public class AccountController {
 		if (auth != null){    
 			new SecurityContextLogoutHandler().logout(request, response, auth);
 		}
-		return "redirect:/";
+		return "redirect:/login";
 	}
 
 	@RequestMapping(method = RequestMethod.POST)

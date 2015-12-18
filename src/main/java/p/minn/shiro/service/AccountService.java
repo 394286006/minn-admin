@@ -6,10 +6,10 @@ import org.apache.shiro.SecurityUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import p.minn.cas.service.IAccountService;
 import p.minn.privilege.entity.User;
 import p.minn.privilege.repository.RoleDao;
 import p.minn.privilege.repository.UserDao;
+import p.minn.security.service.IAccountService;
 
 /**
  * @author minn
@@ -39,6 +39,12 @@ public class AccountService implements IAccountService{
 	public List<String> getRoleListByUserId(Integer id) {
 		// TODO Auto-generated method stub
 		return userDao.getUserRoleList(id);
+	}
+
+	@Override
+	public List<String> getRoleRealmListByUserId(Integer userid) {
+		// TODO Auto-generated method stub
+		return userDao.getUserRoleRealmList(userid);
 	}
 
 

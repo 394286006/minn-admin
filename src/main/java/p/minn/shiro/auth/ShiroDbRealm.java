@@ -16,9 +16,9 @@ import org.apache.shiro.util.ByteSource;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
-import p.minn.cas.service.IAccountService;
 import p.minn.privilege.entity.User;
 import p.minn.privilege.utils.Constant;
+import p.minn.security.service.IAccountService;
 /**
  * 
  * @author minn
