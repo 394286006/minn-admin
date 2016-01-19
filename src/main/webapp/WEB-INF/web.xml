@@ -8,7 +8,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 		    classpath*:/spring/applicationContext-privilege.xml
-		    classpath*:/spring/applicationContext-cas-spring-security.xml
+		    classpath*:/spring/applicationContext-spring-security.xml
 		</param-value>
 	</context-param>
 	<context-param>
@@ -81,6 +81,18 @@
   <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>*.png</url-pattern>
+ </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.jpg</url-pattern>
+ </servlet-mapping>
+   <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.html</url-pattern>
+ </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.swf</url-pattern>
  </servlet-mapping>
 
 	<session-config>

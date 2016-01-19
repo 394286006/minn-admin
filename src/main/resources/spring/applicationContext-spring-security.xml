@@ -14,30 +14,32 @@
 	http://www.springframework.org/schema/aop
 	http://www.springframework.org/schema/aop/spring-aop-3.0.xsd
 	http://www.springframework.org/schema/security
-	http://www.springframework.org/schema/security/spring-security-3.2.xsd"
+	http://www.springframework.org/schema/security/spring-security-4.0.xsd"
 	default-lazy-init="true">
 
 
-	<context:component-scan base-package="p.minn.security.auth,p.minn.security.service" />
+	<context:component-scan base-package="p.minn.security.auth,p.minn.security.service,p.minn.demo.service,p.minn.security.cas.springsecurity.auth" />
+	<sec:http pattern="/imgu**" security="none">
+	</sec:http>
+	<sec:http pattern="/swf**" security="none">
+	</sec:http>
     <sec:http auto-config="true"  >   
      <sec:headers>
      <sec:frame-options policy="SAMEORIGIN"/>
      </sec:headers>
-         <sec:intercept-url pattern="/j_spring_security_check" access="permitAll" />
         <sec:form-login 
-        login-page="/" 
+        login-page="/Main.html" 
         login-processing-url="/j_spring_security_check"
-        default-target-url="/idx" 
+        default-target-url="/login" 
         username-parameter="username"
 		password-parameter="password"
-        authentication-failure-url="/error/500.jsp" />
-        <sec:logout logout-success-url="/" />     
+        authentication-failure-url="/login" />
+        <sec:logout logout-success-url="/logoutHandler" />     
         <sec:csrf disabled="true"/>
     </sec:http>
 
 	<sec:authentication-manager>
-	  <sec:authentication-provider user-service-ref="securityDbRealm">
+	  <sec:authentication-provider ref="myAuthenticationProvider">
 	  </sec:authentication-provider>
 	</sec:authentication-manager>
-
 </beans>

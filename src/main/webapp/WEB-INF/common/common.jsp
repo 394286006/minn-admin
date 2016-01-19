@@ -1,13 +1,14 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
-<%@ page language="java" import="p.minn.privilege.entity.User" %>
+<%@ page language="java" import="p.minn.privilege.entity.Account" %>
 <%@ page language="java" import="p.minn.privilege.utils.Constant" %>
-    <% String sys_ctx_p= request.getContextPath(); 
-       User loginuser=(User)session.getAttribute(Constant.LOGINUSER);
-       String user_account="";
-       if(loginuser!=null){
-    	   user_account=loginuser.getName();
-       }
+    <%
+    	String sys_ctx_p= request.getContextPath(); 
+           Account loginuser=(Account)session.getAttribute(Constant.LOGINUSER);
+           String user_account="";
+           if(loginuser!=null){
+        	   user_account=loginuser.getName();
+           }
     %>
 <script type="text/javascript">
 /**

@@ -15,7 +15,6 @@
 	<name>minn-admin</name>
 	<properties>
 		<!-- 主要依赖库的版本定义 -->
-		<spring-data-jpa.version>1.6.0.RELEASE</spring-data-jpa.version>
 		<ehcache.version>2.6.9</ehcache.version>
 		<guava.version>17.0</guava.version>
 		<!-- Plugin的属性定义 -->
@@ -48,6 +47,11 @@
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>
+			<groupId>p.minn</groupId>
+			<artifactId>minn-base</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
 			<groupId>org.springframework</groupId>
 			<artifactId>spring-core</artifactId>
 			<version>${spring.version}</version>
@@ -62,7 +66,7 @@
 		<dependency>
 			<groupId>org.mybatis</groupId>
 			<artifactId>mybatis-spring</artifactId>
-			<version>1.2.2</version>
+			<version>${mybatis-spring.version}</version>
 		</dependency>
 
 		<!-- spring data access -->
@@ -172,6 +176,17 @@
 			<artifactId>spring-security-oauth2</artifactId>
 			<version>${spring-security-oauth2.version}</version>
 		</dependency>
+<dependency>
+	<groupId>commons-fileupload</groupId>
+	<artifactId>commons-fileupload</artifactId>
+	<version>1.2.1</version>
+</dependency>
+<dependency>
+	<groupId>commons-io</groupId>
+	<artifactId>commons-io</artifactId>
+	<version>2.4</version>
+</dependency>
+
 
 	</dependencies>
 

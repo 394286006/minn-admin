@@ -31,7 +31,7 @@
 
 <script type="text/javascript">
 
-var columnstr='id,operatorname,resname,user_ip,operator_date,signature_name,tablekey_name,signature,tablekey'; 
+var columnstr='id,operatorname,resname,account_ip,operator_date,signature_name,tablekey_name,signature,tablekey'; 
 var columnarr=columnstr.split(",");
 var selected_id='';
 $(function() {
@@ -59,8 +59,8 @@ $(function() {
                 sortable : true,
                 align : 'left'
             },  {
-                display : '<sp:message code="log_user_ip"/>',
-                name : 'user_ip',
+                display : '<sp:message code="log_account_ip"/>',
+                name : 'account_ip',
                 width : 120,
                 sortable : true,
                 align : 'left'
