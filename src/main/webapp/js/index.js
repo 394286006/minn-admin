@@ -15,7 +15,7 @@ $(document).ready(function(){
  
   });
   
-queryTest(query);	
+query();	
 
 
 /*
@@ -66,11 +66,12 @@ queryTest(query);
 
 var query=function(){
 	$.ajax({
-       url: "data/firstpic.txt",
+       url: "data/firstpage_zh.txt",
        datatype: "json",
         success: function (data) {
-
+        	
 			var jarr=getjson(data);
+			
 		  picdata=new Array();
 		$('.carousel-inner').html('');
             for(var i=0;i<jarr.length;i++){
@@ -80,9 +81,8 @@ var query=function(){
 				  }else{
 					   $('<div id="item_'+i+'"  class="item "/>').appendTo('.carousel-inner');
 				  }
-				//alert(jarr[i]._photos.length);
-				 var ps=jarr[i]._photos;
-				 $('<img alt="" src="'+img1+ps[0].imgpath+'"/>').appendTo('#item_'+i);
+				//alert(jarr[i].imgpath);
+				 $('<img alt="" src="'+jarr[i].imgpath+'"/>').appendTo('#item_'+i);
 				 $('<div id="container_'+i+'" class="container"/>').appendTo('#item_'+i);
 				 $('<div id="carousel-caption_'+i+'" class="carousel-caption"/>').appendTo('#container_'+i);
 				 $('<h1>'+jarr[i].name+'</h1>').appendTo('#carousel-caption_'+i);
@@ -91,44 +91,6 @@ var query=function(){
 				 $('#a_'+i).text('更多');
 				 
 		
-				   if(i<3){
-				 var pds=new Array();
-				 for(var j=0;j<ps.length;j++){
-					  var pd=new Object();
-					  pd.id=img_circle+i+'_'+j;
-					  if(j==0){
-						  // filter:alpha(Opacity=80);-moz-opacity:0.5;opacity: 0.5;z-index:100; background-color:#ffffff
-						    $('<div id="'+pd.id+'"  class="span3" style="cursor:hand;"/>').appendTo('.row');
-					  }else{
-						    $('<div id="'+pd.id+'"  class="span3"  style=" display:none;cursor:hand;"/>').appendTo('.row');
-					  }
-					 
-					   $('<img  class="img-circle" data-src="holder.js/120x120"  style="cursor:hand;" src="'+img2+ps[j].imgpath+'"/>').appendTo('#'+pd.id);
-					 //  $('<h2 style="cursor:hand;">'+jarr[i].name+'</h2>').appendTo('#'+pd.id);
-					  $('<a id="a_'+i+'_'+j+'" href="#" class="btn btn-large btn-primary"></a').appendTo('#'+pd.id);
-				     $('#a_'+i+'_'+j).text(jarr[i].name);
-					   $("#"+pd.id).hover(function(evt){
-					
-					        //$("#"+$(this).attr('id')).stop();
-							
-				         },function(evt){
-					      var id=$(this).attr('id').split('_');
-						 
-					       //  pichidden(id[2],id[3]);
-					    });
-					  if(j==0){
-						  pd.show=1;
-					  }else{
-						  pd.show=0;
-					  }
-					 pds.push(pd);
-				 }
-
-			  
-			   picdata.push(pds);
-			   
-			     pichidden(i,0);
-				}
 			}
 
 			

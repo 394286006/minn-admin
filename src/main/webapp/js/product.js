@@ -1,30 +1,22 @@
 // JavaScript Document
 var jdata;
 $(document).ready(function(){
-		queryTest(callBack);	   
-		   
+		callBack();
 	 });
 
 var total;
 var callBack=function(){
 	
-	var param = JSON.stringify({'_sid':private_key, 'type_name':'','type_maxcategory_id':'','type_category_id':'','type_price_start':'','type_price_end':'','pageIndex':0,'pageSize':page_size,'recordCount':-1});
+	var param ='messageBody={"page":0,"query":"2","qtype":"categoryid","rp":20}&lang="zh"';
 	
 	$.ajax({
-       url: "./json.php/front.product.ProductService.queryProduct/",
+       url: "frontpic?method=frontquery",
        datatype: "json",
 	   data:param,
         success: function (data) {
-	      var jarr=decodedata(data);
-
-		 if(jarr[0]==1){
-			 total=jarr[3];
-		     gengpagegroup(total);
-			if(pagegroup.length>1){
-		  		generated(group_flag,1,pagegroup[0][pagegroup[0].length-1]+1,0,'>>',false,'next_');
-			}
-
-	    	jdata=jarr[2];
+	      var jrs=data.data;
+		 if(data.success==true){
+			 jdata=jrs.result;
 	       	genproduct();
 			
 		 }
@@ -45,7 +37,7 @@ var querypage=function(cur){
        datatype: "json",
 	   data:param,
         success: function (data) {
-	      var jarr=decodedata(data);
+	      var jarr=getjson(data);
 
 		 if(jarr[0]==1){
 			 total=jarr[3];
@@ -63,7 +55,6 @@ var querypage=function(cur){
 }
 
  var genproduct=function(){
-	
 	 for(var i=0;i<jdata.length;i++){
 		  if(i%3==0){
 				$('<li id="thumbnail_'+i+'"  class="span4"   style="margin-left:0px;"/>').appendTo('.thumbnails');
@@ -71,15 +62,11 @@ var querypage=function(cur){
 			  }else{
 					$('<li id="thumbnail_'+i+'"  class="span4"/>').appendTo('.thumbnails');
 			  }
-
+    
 		  $('<div id="content_'+i+'"  class="thumbnail"/>').appendTo('#thumbnail_'+i);
-		  $('<img  src="'+img1+jdata[i]._photos[0].imgpath+'"/>').appendTo('#content_'+i);
+		  $('<img  src="'+jdata[i].imgpath+'"/>').appendTo('#content_'+i);
 		  $('<h3>'+jdata[i].name+"</h3>").appendTo('#content_'+i);
-		   $('<p>'+jdata[i].descript+"</p>").appendTo('#content_'+i);
-		 $('<a id="a_'+i+'" href="#" class="btn" onClick="openimg(event,\'thumbnail_'+i+'\')"></a').appendTo('#content_'+i);
-		  $('#a_'+i).text('html查看');
-		   $('<a id="a_s_'+i+'" href="#" class="btn" onClick="openswf('+i+')"></a').appendTo('#content_'+i);
-		  $('#a_s_'+i).text('flash查看');
+		 // $('<p>'+jdata[i].descript+"</p>").appendTo('#content_'+i);
 
 			}
 }

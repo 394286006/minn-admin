@@ -33,6 +33,8 @@ import java.util.Map;
 
 
 
+
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.fileupload.FileItem;
@@ -42,6 +44,7 @@ import org.apache.commons.fileupload.servlet.ServletFileUpload;
 import org.apache.commons.lang3.StringUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+import org.springframework.web.bind.annotation.ModelAttribute;
 
 import p.minn.common.utils.MyGsonMap;
 import p.minn.common.utils.Page;
@@ -52,7 +55,9 @@ import p.minn.privilege.entity.PicturePath;
 import p.minn.privilege.repository.GlobalizationDao;
 import p.minn.privilege.repository.PictureDao;
 import p.minn.privilege.repository.PicturePathDao;
+import p.minn.privilege.utils.Constant;
 import p.minn.privilege.utils.Utils;
+import p.minn.security.cas.springsecurity.auth.User;
 
 /**
  * 
@@ -87,29 +92,31 @@ public class PictureService {
 	}
 
 
-	public void update(String messageBody, String lang) {
+	public void update(User user,String messageBody, String lang) {
 		// TODO Auto-generated method stub
 		MyGsonMap<Map,Picture> msm=MyGsonMap.getInstance(messageBody,Map.class, Picture.class); 
 		Picture picture=msm.gson2T(Picture.class);
 		Map map=msm.gson2Map();
+		picture.setUpdateid(user.getId());
 		pictureDao.update(picture);
 		Globalization glz=new Globalization();
 		glz.setId(Double.valueOf(map.get("gid").toString()).intValue());
 		glz.setName(map.get("name").toString());
 		globalizationDao.update(glz);
 		glz=new Globalization();
+		glz.setUpdateid(user.getId());
 		glz.setId(Double.valueOf(map.get("gcommentid").toString()).intValue());
 		glz.setName(map.get("comment").toString());
 		globalizationDao.update(glz);
 	}
 
 
-	public void save(String messageBody, String lang) {
+	public void save( User user,String messageBody, String lang) {
 		// TODO Auto-generated method stub
 		MyGsonMap<Map,Picture> msm=MyGsonMap.getInstance(messageBody,Map.class, Picture.class); 
 		Picture picture=msm.gson2T(Picture.class);
 		Map map=msm.gson2Map();
-		picture.setCreateid(1);
+		picture.setCreateid(user.getId());
 		if(pictureDao.checkName(lang,map.get("name").toString())>0)
 			throw new RuntimeException("name:"+map.get("name").toString()+", exists!");
 		pictureDao.save(picture);
@@ -163,7 +170,7 @@ public class PictureService {
 	          }else{
 	        	  MyGsonMap<Map,PicturePath> msm=MyGsonMap.getInstance(messageBody,Map.class, PicturePath.class); 
 	    		  picturePath=msm.gson2T(PicturePath.class);
-	        	  disk = new File(uploadPath + fileName+"."+picturePath.getPictype());   
+	        	  disk = new File(uploadPath + fileName);   
 	              item.write(disk);    
 	           }
 	      } 
@@ -184,10 +191,14 @@ public class PictureService {
 	}
 
 
-	public void deletePic(String messageBody) {
+	public void deletePic(String messageBody,HttpServletRequest req) {
 		// TODO Auto-generated method stub
 		IdEntity idEntity=(IdEntity) Utils.gson2T(messageBody,IdEntity.class);
-		System.out.println("id:"+idEntity.getId());
+		PicturePath pp=picturePathDao.findEntityById(idEntity);
+		String  uploadPath =Utils.getReadUploadPath(req); 
+		File disk = new File(uploadPath + pp.getImgpath()); 
+		if(disk.exists())
+			disk.delete();
 		picturePathDao.delete(idEntity);
 	}
 
@@ -239,7 +250,7 @@ public class PictureService {
 	public Map<String,String> genFirstPagePic(String messageBody, String lang,HttpServletRequest req) {
 		// TODO Auto-generated method stub
 		Map<String,String> data=null;
-		String filename="firstpage_"+lang+".json";
+		String filename="firstpage_"+lang+".txt";
 		 String servletpath=Utils.getReadDataPath(req);
 		 FileOutputStream fos=null;
 		try {
@@ -260,11 +271,26 @@ public class PictureService {
 	       oos.flush();
 	       oos.close();
 	       data=new HashMap<String,String>();
-	       data.put("info", "succeess");
+	       data.put("info", "success");
 		}catch(Exception e){
 			e.printStackTrace();
-	    	   new RuntimeException("gen firstpage.json fail!");
+	    	   new RuntimeException("gen firstpage.txt fail!");
 	       }
 		return data;
+	}
+
+
+	public Object frontquery(String messageBody, String lang) {
+		// TODO Auto-generated method stub
+		
+		Page page=(Page) Utils.gson2T(messageBody, Page.class);
+		Map<String,String> condition=Utils.getCondition(page);
+		int total=picturePathDao.getFrontTotal(lang,condition);
+		page.setPage(page.getPage()+1);
+		page.setTotal(total);
+		List<Map<String,Object>> list=picturePathDao.frontQuery(lang,page,condition);
+	    page.setResult(list);
+	
+		return page;
 	}
 }

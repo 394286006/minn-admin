@@ -1,7 +1,7 @@
 /**
-×÷Õß£ºminn
+author:minn
 QQ:394286006
-email£ºfreemanfrelift@gmail.com
+email:freemanfrelift@gmail.com
 */
 var img1='services/uploadfile/imglevel1/';
 var img2='services/uploadfile/imglevel2/';
@@ -14,13 +14,13 @@ var pagegroup=new Array();
 var page_group_size=3;
 var getjson=function(data){
 	return eval("("+decodeURIComponent(data)+")");
-}
+};
 
 var decodedata=function(data){
 	var arr=getjson(data);
 	arr[2]=getjson(arr[2]);
 	return arr;
-}
+};
 
 var queryTest=function(cf){
 	$.ajax({
@@ -33,9 +33,9 @@ var queryTest=function(cf){
 			}
 			  
         },
-        error: function () { alert("´íÎó"); }
+        error: function () { alert("ï¿½ï¿½ï¿½ï¿½"); }
                 });
-}
+};
 
 var stopBubble=function(e){
 
@@ -45,7 +45,7 @@ var stopBubble=function(e){
      }else {
 	 window.event.cancelBubble = true; 
 	 }
-}
+};
 
 var generated=function(type,curgroup,idx,curpage,lab,newgroup,subfix){
 
@@ -76,7 +76,7 @@ var generated=function(type,curgroup,idx,curpage,lab,newgroup,subfix){
 	 $(e).appendTo('#page_li_'+subfix+idx);
 	 $('#page_li_a_'+subfix+idx).text(lab);
 			
-}
+};
 
 
 
@@ -103,7 +103,7 @@ var gopage=function(type,curgroup,idx,curpage,lab,newgroup,subfix){
 	
 	
 }
-
+;
 var gengpagegroup=function(total){
 	 var page;
 			
@@ -134,4 +134,4 @@ var gengpagegroup=function(total){
 					
 				 }
 		    }
-}
+};

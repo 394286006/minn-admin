@@ -9,6 +9,7 @@ import javax.servlet.http.HttpServletResponse;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
+import org.springframework.web.bind.annotation.ModelAttribute;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.bind.annotation.ResponseBody;
@@ -18,6 +19,7 @@ import p.minn.common.annotation.MyParam;
 import p.minn.common.exception.WebPrivilegeException;
 import p.minn.demo.service.PictureService;
 import p.minn.privilege.utils.Constant;
+import p.minn.security.cas.springsecurity.auth.User;
 
 /**
  * 
@@ -37,10 +39,10 @@ public class PictureController {
 
 	@RequestMapping(params = "method=save")
 	@ResponseBody
-	public Object save(@RequestParam("messageBody") String messageBody,@MyParam("language") String lang) {
+	public Object save(@ModelAttribute(Constant.LOGINUSER) User user,@RequestParam("messageBody") String messageBody,@MyParam("language") String lang) {
 		Object entity = null;
 		try {
-			pictureService.save(messageBody,lang);
+			pictureService.save(user,messageBody,lang);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new WebPrivilegeException(e.getMessage());
@@ -66,10 +68,10 @@ public class PictureController {
 	
 	@RequestMapping(params = "method=update")
 	@ResponseBody
-	public Object update(@RequestParam("messageBody") String messageBody,@MyParam("language") String lang) {
+	public Object update(@ModelAttribute(Constant.LOGINUSER) User user,@RequestParam("messageBody") String messageBody,@MyParam("language") String lang) {
 		Object entity = null;
 		try {
-			pictureService.update(messageBody,lang);
+			pictureService.update(user,messageBody,lang);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new WebPrivilegeException(e.getMessage());
@@ -115,10 +117,10 @@ public class PictureController {
 	
 	@RequestMapping(params = "method=delPic")
 	@ResponseBody
-	public Object deletePic(@RequestParam("messageBody") String messageBody) {
+	public Object deletePic(@RequestParam("messageBody") String messageBody,HttpServletRequest req) {
 		Object entity = null;
 		try {
-			pictureService.deletePic(URLDecoder.decode(messageBody, "UTF-8"));
+			pictureService.deletePic(URLDecoder.decode(messageBody, "UTF-8"), req);
 		} catch (Exception e) {
 			e.printStackTrace();
 			entity = new WebPrivilegeException(e.getMessage());
