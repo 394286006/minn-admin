@@ -17,6 +17,8 @@ import java.util.Map;
 
 
 
+
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.fileupload.FileItem;
@@ -29,9 +31,11 @@ import org.springframework.stereotype.Service;
 import p.minn.common.utils.MyGsonMap;
 import p.minn.common.utils.Page;
 import p.minn.common.utils.UtilCommon;
+import p.minn.hadoop.entity.HadoopSpark;
 import p.minn.hadoop.hdfs.HDFSFileUtils;
 import p.minn.hadoop.repository.HadoopSparkDao;
 import p.minn.privilege.utils.Utils;
+import p.minn.spark.jdbc.HadoopSparkJDBC;
 
 /**
  * 
@@ -46,20 +50,22 @@ public class HadoopSparkService {
 	@Autowired
 	private DriverManagerDataSource hdfsdataSource;
 	@Autowired
-	private HadoopSparkDao hadoopSparkDao;
+	private HadoopSparkJDBC hadoopSparkJDBC;
 	
 	@Autowired
 	private HDFSFileUtils hdfsFileUtils;
+	
 
 	public Object query(String messageBody, String lang)  {
 		// TODO Auto-generated method stub
 		
 		Page page=(Page) Utils.gson2T(messageBody, Page.class);
 		Map<String,String> condition=Utils.getCondition(page);
-		int total=hadoopSparkDao.getTotal(lang,condition);
+		int total=20;//hadoopSparkJDBC.getTotal("hadoopspark","select count(id) from hadoopspark");
 		page.setPage(page.getPage()+1);
 		page.setTotal(total);
-		List<Map<String,Object>> list= hadoopSparkDao.query(lang,page,condition);
+		String sql="select id,name,email,qq from hadoopspark  order by id asc";
+		List<HadoopSpark> list= hadoopSparkJDBC.query(page,sql);
 		page.setResult(list);
 		return page;
 	}
