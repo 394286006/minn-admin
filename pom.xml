@@ -46,6 +46,11 @@
 			<artifactId>minn-oauth</artifactId>
 			<version>0.0.1</version>
 		</dependency>
+				<dependency>
+			<groupId>p.minn</groupId>
+			<artifactId>minn-hadoop</artifactId>
+			<version>0.0.1</version>
+		</dependency>
 		<dependency>
 			<groupId>p.minn</groupId>
 			<artifactId>minn-base</artifactId>
