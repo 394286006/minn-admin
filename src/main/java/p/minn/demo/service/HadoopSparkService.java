@@ -2,10 +2,15 @@ package p.minn.demo.service;
 
 import java.io.File;
 import java.net.URLDecoder;
+import java.sql.Connection;
+import java.sql.SQLException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.ListIterator;
 import java.util.Map;
+
+
+
 
 
 
@@ -34,6 +39,7 @@ import p.minn.common.utils.UtilCommon;
 import p.minn.hadoop.entity.HadoopSpark;
 import p.minn.hadoop.hdfs.HDFSFileUtils;
 import p.minn.hadoop.repository.HadoopSparkDao;
+import p.minn.hive.jdbc.HadoopHiveJDBC;
 import p.minn.privilege.utils.Utils;
 import p.minn.spark.jdbc.HadoopSparkJDBC;
 
@@ -48,25 +54,24 @@ public class HadoopSparkService {
 
 	
 	@Autowired
-	private DriverManagerDataSource hdfsdataSource;
-	@Autowired
-	private HadoopSparkJDBC hadoopSparkJDBC;
-	
-	@Autowired
 	private HDFSFileUtils hdfsFileUtils;
 	
+	@Autowired
+    private HadoopHiveJDBC hadoopHiveJDBC;
+	
 
-	public Object query(String messageBody, String lang)  {
+	public Object query(String messageBody, String lang) throws Exception  {
 		// TODO Auto-generated method stub
-		
 		Page page=(Page) Utils.gson2T(messageBody, Page.class);
 		Map<String,String> condition=Utils.getCondition(page);
-		int total=20;//hadoopSparkJDBC.getTotal("hadoopspark","select count(id) from hadoopspark");
+		Connection conn=hadoopHiveJDBC.getConnect();
+		int total=hadoopHiveJDBC.getTotal(conn,"select count(id) from hadoopspark");
 		page.setPage(page.getPage()+1);
 		page.setTotal(total);
-		String sql="select id,name,email,qq from hadoopspark  order by id asc";
-		List<HadoopSpark> list= hadoopSparkJDBC.query(page,sql);
+		String sql="select id,name,email,qq from hadoopspark  order by id asc ";
+		List<HadoopSpark> list= hadoopHiveJDBC.query(conn,page,sql);
 		page.setResult(list);
+		hadoopHiveJDBC.close(conn);
 		return page;
 	}
 
