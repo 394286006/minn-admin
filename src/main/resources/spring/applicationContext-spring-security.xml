@@ -23,6 +23,8 @@
 	</sec:http>
 	<sec:http pattern="/swf**" security="none">
 	</sec:http>
+	<sec:http pattern="/locale**" security="none">
+	</sec:http>
 	<sec:http pattern="/frontpic**" security="none">
 	</sec:http>
     <sec:http auto-config="true"  >   

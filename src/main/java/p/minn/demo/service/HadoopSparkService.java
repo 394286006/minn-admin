@@ -53,10 +53,10 @@ import p.minn.spark.jdbc.HadoopSparkJDBC;
 public class HadoopSparkService {
 
 	
-	@Autowired
+	//@Autowired
 	private HDFSFileUtils hdfsFileUtils;
 	
-	@Autowired
+	//@Autowired
     private HadoopHiveJDBC hadoopHiveJDBC;
 	
 
