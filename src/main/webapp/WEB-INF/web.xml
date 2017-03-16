@@ -8,6 +8,7 @@
 		<param-name>contextConfigLocation</param-name>
 		<param-value>
 		    classpath*:/spring/applicationContext-privilege.xml
+		    classpath*:/spring/applicationContext-workflow.xml
 		    classpath*:/spring/applicationContext-spring-security.xml
 		    classpath*:/spring/mongo/applicationContext-mongo.xml
 		</param-value>

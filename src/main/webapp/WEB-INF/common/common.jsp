@@ -1,7 +1,7 @@
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>
 <%@ page language="java" import="p.minn.privilege.entity.Account" %>
-<%@ page language="java" import="p.minn.privilege.utils.Constant" %>
+<%@ page language="java" import="p.minn.workflow.Constant" %>
     <%
     	String sys_ctx_p= request.getContextPath(); 
            Account loginuser=(Account)session.getAttribute(Constant.LOGINUSER);

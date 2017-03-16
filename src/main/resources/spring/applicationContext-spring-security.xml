@@ -27,23 +27,35 @@
 	</sec:http>
 	<sec:http pattern="/frontpic**" security="none">
 	</sec:http>
-    <sec:http auto-config="true"  >   
-     <sec:headers>
+	
+    <sec:http  disable-url-rewriting="true" use-expressions="true" auto-config="false" entry-point-ref="authEntryPoint" >   
+    <sec:headers>
      <sec:frame-options policy="SAMEORIGIN"/>
      </sec:headers>
-        <sec:form-login 
-        login-page="/Main.html" 
-        login-processing-url="/j_spring_security_check"
-        default-target-url="/login" 
-        username-parameter="username"
-		password-parameter="password"
-        authentication-failure-url="/login" />
-        <sec:logout logout-success-url="/logoutHandler" />     
-        <sec:csrf disabled="true"/>
+     <sec:intercept-url pattern="j_spring_security_check" access="permitAll"/>
+       <sec:custom-filter position="FORM_LOGIN_FILTER" ref="usernamePasswordAuthenticationFilter" />
+       <sec:logout logout-success-url="/logoutHandler" />
+       <sec:csrf disabled="true"/>
     </sec:http>
 
-	<sec:authentication-manager>
-	  <sec:authentication-provider ref="myAuthenticationProvider">
+	<sec:authentication-manager alias="authenticationManager">
+	  <sec:authentication-provider ref="myAuthenticationProvider"> 
 	  </sec:authentication-provider>
 	</sec:authentication-manager>
+	 <bean id="authEntryPoint" class="org.springframework.security.web.authentication.LoginUrlAuthenticationEntryPoint">
+       <constructor-arg value="/j_spring_security_check"/>
+   </bean>
+	<bean id="usernamePasswordAuthenticationFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
+	   <property name="authenticationManager" ref="authenticationManager"/>
+	   <property name="usernameParameter" value="username"/>
+      <property name="passwordParameter" value="password"/>
+      <property name="filterProcessesUrl" value="/j_spring_security_check" />
+       <property name="authenticationSuccessHandler" ref="loginSuccessHandler" />
+       <property name="authenticationDetailsSource" ref="authenticationDetailsSource"/>
+	</bean>
+	<bean id="authenticationDetailsSource" class="p.minn.security.cas.springsecurity.auth.MyAuthenticationDetailsSource">
+   </bean>
+	<bean id="loginSuccessHandler" class="p.minn.security.cas.springsecurity.auth.LoginSuccessHandler">
+        <property name="defaultTargetUrl" value="login" />
+   </bean>
 </beans>

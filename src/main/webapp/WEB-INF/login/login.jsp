@@ -1,4 +1,4 @@
-<%@page import="p.minn.privilege.utils.Constant"%>
+<%@page import="p.minn.workflow.Constant"%>
 <%@page session="true"%>
 <%@ page language="java" contentType="text/html; charset=utf-8"
     pageEncoding="utf-8"%>

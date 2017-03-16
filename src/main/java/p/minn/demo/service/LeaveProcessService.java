@@ -172,7 +172,7 @@ public void save(User user,String messageBody, String lang) {
 public void delete(String messageBody) {
     // TODO Auto-generated method stub
     IdEntity idEntity=(IdEntity) UtilCommon.gson2T(messageBody,IdEntity.class);
-    globalizationDao.deleteByTableId(idEntity.getId().toString(),"wf_leaveprocess");
+    globalizationDao.deleteByTableId(idEntity.getId(),"wf_leaveprocess");
     dao.delete(idEntity);
     processAuditDao.deleteByLpId(idEntity.getId());
     processAuditStatusDao.deleteByLpId(idEntity.getId());

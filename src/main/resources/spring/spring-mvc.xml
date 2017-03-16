@@ -13,7 +13,7 @@
    	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/css/**" location="/css/" />
     <context:component-scan
-		base-package="p.minn.common.aop.webarg,p.minn.privilege.web,p.minn.oauth.web,p.minn.security.web,p.minn.demo.web">
+		base-package="p.minn.common.aop.webarg,p.minn.privilege.web,p.minn.oauth.web,p.minn.security.web,p.minn.demo.web,p.minn.workflow.web">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 		<context:include-filter type="annotation"
