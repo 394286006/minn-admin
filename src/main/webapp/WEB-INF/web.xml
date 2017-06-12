@@ -9,6 +9,7 @@
 		<param-value>
 		    classpath*:/spring/applicationContext-privilege.xml
 		    classpath*:/spring/applicationContext-workflow.xml
+		    classpath*:/spring/applicationContext-hadoopspark.xml
 		    classpath*:/spring/applicationContext-spring-security.xml
 		    classpath*:/spring/mongo/applicationContext-mongo.xml
 		</param-value>
@@ -75,6 +76,10 @@
  <servlet-mapping>
     <servlet-name>default</servlet-name>
     <url-pattern>*.js</url-pattern>
+ </servlet-mapping>
+  <servlet-mapping>
+    <servlet-name>default</servlet-name>
+    <url-pattern>*.htm</url-pattern>
  </servlet-mapping>
   <servlet-mapping>
     <servlet-name>default</servlet-name>

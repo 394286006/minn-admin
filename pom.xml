@@ -6,7 +6,7 @@
 		<groupId>p.minn</groupId>
 		<artifactId>minn-parent</artifactId>
 		<version>0.0.1</version>
-		<relativePath />
+		<relativePath>../minn-parent</relativePath>
 	</parent>
 
 	<artifactId>admin</artifactId>
@@ -19,7 +19,7 @@
 		<guava.version>17.0</guava.version>
 		<!-- Plugin的属性定义 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
-		
+
 		<java.version>1.6</java.version>
 	</properties>
 
@@ -46,7 +46,7 @@
 			<artifactId>minn-oauth</artifactId>
 			<version>0.0.1</version>
 		</dependency>
-				<dependency>
+		<dependency>
 			<groupId>p.minn</groupId>
 			<artifactId>minn-hadoop</artifactId>
 			<version>0.0.1</version>
@@ -64,6 +64,11 @@
 		<dependency>
 			<groupId>p.minn</groupId>
 			<artifactId>minn-workflow</artifactId>
+			<version>0.0.1</version>
+		</dependency>
+		<dependency>
+			<groupId>p.minn</groupId>
+			<artifactId>minn-ai</artifactId>
 			<version>0.0.1</version>
 		</dependency>
 		<dependency>
@@ -191,20 +196,34 @@
 			<artifactId>spring-security-oauth2</artifactId>
 			<version>${spring-security-oauth2.version}</version>
 		</dependency>
-<dependency>
-	<groupId>commons-fileupload</groupId>
-	<artifactId>commons-fileupload</artifactId>
-	<version>1.2.1</version>
-</dependency>
-<dependency>
-	<groupId>commons-io</groupId>
-	<artifactId>commons-io</artifactId>
-	<version>2.4</version>
-</dependency>
+		<dependency>
+			<groupId>commons-fileupload</groupId>
+			<artifactId>commons-fileupload</artifactId>
+			<version>1.2.1</version>
+		</dependency>
+		<dependency>
+			<groupId>commons-io</groupId>
+			<artifactId>commons-io</artifactId>
+			<version>2.4</version>
+		</dependency>
 
 
 	</dependencies>
 
-
-
+	<build>
+		<finalName>minn-admin</finalName>
+		<plugins>
+        <plugin>
+            <groupId>org.apache.maven.plugins</groupId>
+            <artifactId>maven-war-plugin</artifactId>
+            <configuration>
+                <outputDirectory>/Volumes/d/server/apache-tomcat-7.0.61/wtpwebapps/</outputDirectory>
+            </configuration>
+        </plugin>
+    </plugins>
+	</build>
+	<organization>
+		<name>minn</name>
+		<url>http://fmfl.iteye.com</url>
+	</organization>
 </project>

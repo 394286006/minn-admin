@@ -24,6 +24,8 @@ import java.util.Map;
 
 
 
+
+
 import javax.servlet.http.HttpServletRequest;
 
 import org.apache.commons.fileupload.FileItem;
@@ -39,9 +41,9 @@ import p.minn.common.utils.UtilCommon;
 import p.minn.hadoop.entity.HadoopSpark;
 import p.minn.hadoop.hdfs.HDFSFileUtils;
 import p.minn.hadoop.repository.HadoopSparkDao;
-import p.minn.hive.jdbc.HadoopHiveJDBC;
+import p.minn.jdbc.hive.HadoopHiveJDBC;
+import p.minn.jdbc.spark.HadoopSparkJDBC;
 import p.minn.privilege.utils.Utils;
-import p.minn.spark.jdbc.HadoopSparkJDBC;
 
 /**
  * 
