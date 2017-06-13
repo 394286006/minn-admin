@@ -27,6 +27,8 @@
 	</sec:http>
 	<sec:http pattern="/frontpic**" security="none">
 	</sec:http>
+	<sec:http pattern="/download/**" security="none">
+	</sec:http>
 	<sec:http pattern="/accountTp?method=getLoginThirdParts**" security="none">
 	</sec:http>
 	
