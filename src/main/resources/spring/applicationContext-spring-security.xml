@@ -18,7 +18,7 @@
 	default-lazy-init="true">
 
 
-	<context:component-scan base-package="p.minn.security.auth,p.minn.security.service,p.minn.demo.service,p.minn.tensorflow.service,p.minn.security.cas.springsecurity.auth" />
+	<context:component-scan base-package="p.minn.security.auth,p.minn.security.service,p.minn.demo.service,p.minn.tensorflow.service,p.minn.lucene.service,p.minn.security.cas.springsecurity.auth" />
 	<sec:http pattern="/imgu**" security="none">
 	</sec:http>
 	<sec:http pattern="/swf**" security="none">
