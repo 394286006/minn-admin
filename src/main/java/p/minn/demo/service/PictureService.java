@@ -140,7 +140,7 @@ public class PictureService {
 	public void delete(String messageBody) {
 		// TODO Auto-generated method stub
 		IdEntity idEntity=(IdEntity) Utils.gson2T(messageBody,IdEntity.class);
-		globalizationDao.deleteByTableId(idEntity.getId(),"picture");
+		globalizationDao.delete(idEntity);
 		pictureDao.delete(idEntity);
 	}
 
