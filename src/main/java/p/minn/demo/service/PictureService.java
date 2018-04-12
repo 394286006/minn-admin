@@ -48,6 +48,7 @@ import org.springframework.web.bind.annotation.ModelAttribute;
 
 import p.minn.common.utils.MyGsonMap;
 import p.minn.common.utils.Page;
+import p.minn.oauth.vo.User;
 import p.minn.privilege.entity.Globalization;
 import p.minn.privilege.entity.IdEntity;
 import p.minn.privilege.entity.Picture;
@@ -57,7 +58,6 @@ import p.minn.privilege.repository.PictureDao;
 import p.minn.privilege.repository.PicturePathDao;
 import p.minn.privilege.utils.Constant;
 import p.minn.privilege.utils.Utils;
-import p.minn.security.cas.springsecurity.auth.User;
 
 /**
  * 

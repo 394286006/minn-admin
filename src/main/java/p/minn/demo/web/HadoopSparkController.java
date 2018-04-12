@@ -19,8 +19,8 @@ import p.minn.common.annotation.MyParam;
 import p.minn.common.exception.WebPrivilegeException;
 import p.minn.demo.service.HadoopSparkService;
 import p.minn.demo.service.PictureService;
+import p.minn.oauth.vo.User;
 import p.minn.privilege.utils.Constant;
-import p.minn.security.cas.springsecurity.auth.User;
 
 /**
  * 

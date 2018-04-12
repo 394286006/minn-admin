@@ -18,7 +18,7 @@
 	default-lazy-init="true">
 
 
-	<context:component-scan base-package="p.minn.security.auth,p.minn.security.service,p.minn.demo.service,p.minn.tensorflow.service,p.minn.lucene.service,p.minn.security.cas.springsecurity.auth" />
+	<context:component-scan base-package="p.minn.security.auth,p.minn.security.service,p.minn.demo.service,p.minn.tensorflow.service,p.minn.lucene.service,p.minn.security.cas.springsecurity.auth,,p.minn.oauth.service" />
 	<sec:http pattern="/imgu**" security="none">
 	</sec:http>
 	<sec:http pattern="/swf**" security="none">
@@ -31,11 +31,7 @@
 	</sec:http>
 	<sec:http pattern="/accountTp?method=getLoginThirdParts**" security="none">
 	</sec:http>
-	
     <sec:http  disable-url-rewriting="true" use-expressions="true" auto-config="false" entry-point-ref="authEntryPoint" >   
-    <sec:headers>
-     <sec:frame-options policy="SAMEORIGIN"/>
-     </sec:headers>
      <sec:intercept-url pattern="j_spring_security_check" access="permitAll"/>
        <sec:custom-filter position="FORM_LOGIN_FILTER" ref="usernamePasswordAuthenticationFilter" />
        <sec:logout logout-success-url="/logoutHandler" />
@@ -52,8 +48,8 @@
 	<bean id="usernamePasswordAuthenticationFilter" class="org.springframework.security.web.authentication.UsernamePasswordAuthenticationFilter">
 	   <property name="authenticationManager" ref="authenticationManager"/>
 	   <property name="usernameParameter" value="username"/>
-      <property name="passwordParameter" value="password"/>
-      <property name="filterProcessesUrl" value="/j_spring_security_check" />
+       <property name="passwordParameter" value="password"/>
+       <property name="filterProcessesUrl" value="/j_spring_security_check" />
        <property name="authenticationSuccessHandler" ref="loginSuccessHandler" />
        <property name="authenticationDetailsSource" ref="authenticationDetailsSource"/>
 	</bean>
