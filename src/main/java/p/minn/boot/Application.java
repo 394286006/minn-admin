@@ -16,7 +16,6 @@ import org.springframework.context.annotation.ImportResource;
 //@EnableHystrixDashboard
 @ImportResource({"classpath*:/spring/spring-mvc.xml"
 		,"classpath*:/spring/applicationContext-privilege.xml"
-		//,"classpath*:/spring/applicationContext-workflow.xml"
 		,"classpath*:/spring/applicationContext-hadoopspark.xml"
 		,"classpath*:/spring/applicationContext-spring-security.xml"
 		,"classpath*:/spring/ignite/applicationContext-ignite.xml"
