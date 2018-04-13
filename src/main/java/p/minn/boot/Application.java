@@ -11,7 +11,6 @@ import org.springframework.context.annotation.ImportResource;
  * 
  */
 @SpringBootApplication
-//@EnableEurekaClient
 //@EnableDiscoveryClient
 //@EnableHystrix
 //@EnableHystrixDashboard

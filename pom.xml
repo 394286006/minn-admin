@@ -5,17 +5,14 @@
 	<parent>
 		<groupId>p.minn</groupId>
 		<artifactId>minn-parent</artifactId>
-		<version>0.0.1</version>
+		<version>1.0.0</version>
 		<relativePath>../minn-parent</relativePath>
 	</parent>
 	<artifactId>admin</artifactId>
 	<packaging>war</packaging>
-	<version>0.0.1-SNAPSHOT</version>
+	<version>1.0.0-SNAPSHOT</version>
 	<name>minn-admin</name>
 	<properties>
-		<!-- 主要依赖库的版本定义 -->
-		<ehcache.version>2.6.9</ehcache.version>
-		<guava.version>17.0</guava.version>
 		<!-- Plugin的属性定义 -->
 		<project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
 		<java.version>1.6</java.version>
@@ -27,42 +24,32 @@
 		<dependency>
 			<groupId>p.minn</groupId>
 			<artifactId>minn-common</artifactId>
-			<version>0.0.1</version>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>p.minn</groupId>
 			<artifactId>minn-cas-client</artifactId>
-			<version>0.0.1</version>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>p.minn</groupId>
 			<artifactId>minn-pojo</artifactId>
-			<version>0.0.1</version>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>p.minn</groupId>
 			<artifactId>minn-oauth</artifactId>
-			<version>0.0.1</version>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>p.minn</groupId>
 			<artifactId>minn-hadoop</artifactId>
-			<version>0.0.1</version>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>p.minn</groupId>
 			<artifactId>minn-base</artifactId>
-			<version>0.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>p.minn</groupId>
-			<artifactId>minn-pojo-workflow</artifactId>
-			<version>0.0.1</version>
-		</dependency>
-		<dependency>
-			<groupId>p.minn</groupId>
-			<artifactId>minn-workflow</artifactId>
-			<version>0.0.1</version>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>p.minn</groupId>
@@ -72,7 +59,7 @@
 		<dependency>
 			<groupId>p.minn</groupId>
 			<artifactId>minn-lucene</artifactId>
-			<version>0.0.1</version>
+			<version>1.0.0</version>
 		</dependency>
 		<dependency>
 			<groupId>org.springframework</groupId>
@@ -160,11 +147,7 @@
 			<version>${guava.version}</version>
 		</dependency>
 
-		<dependency>
-			<groupId>org.apache.shiro</groupId>
-			<artifactId>shiro-cas</artifactId>
-			<version>${shiro.version}</version>
-		</dependency>
+
 
 		<dependency>
 			<groupId>org.springframework.security</groupId>
@@ -181,16 +164,7 @@
 			<artifactId>xmlsec</artifactId>
 			<version>1.4.3</version>
 		</dependency>
-		<dependency>
-			<groupId>org.springframework.security.oauth</groupId>
-			<artifactId>spring-security-oauth2</artifactId>
-			<version>${spring-security-oauth2.version}</version>
-		</dependency>
-		<dependency>
-			<groupId>org.springframework.security.oauth</groupId>
-			<artifactId>spring-security-oauth2</artifactId>
-			<version>${spring-security-oauth2.version}</version>
-		</dependency>
+
 		<dependency>
 			<groupId>commons-fileupload</groupId>
 			<artifactId>commons-fileupload</artifactId>
@@ -200,6 +174,35 @@
 			<groupId>commons-io</groupId>
 			<artifactId>commons-io</artifactId>
 			<version>2.4</version>
+		</dependency>
+
+		<!-- spring clound -->
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-eureka</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-web</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-test</artifactId>
+			<scope>test</scope>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-hystrix</artifactId>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.boot</groupId>
+			<artifactId>spring-boot-starter-actuator</artifactId>
+		</dependency>
+
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-hystrix-dashboard</artifactId>
 		</dependency>
 
 	</dependencies>
