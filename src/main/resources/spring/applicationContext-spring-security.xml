@@ -34,7 +34,7 @@
     <sec:http  disable-url-rewriting="true" use-expressions="true" auto-config="false" entry-point-ref="authEntryPoint" >   
      <sec:intercept-url pattern="j_spring_security_check" access="permitAll"/>
        <sec:custom-filter position="FORM_LOGIN_FILTER" ref="usernamePasswordAuthenticationFilter" />
-       <sec:logout logout-success-url="/logoutHandler" />
+       <sec:logout logout-success-url="http://go.back.com:8769/admin/logoutHandler" />
        <sec:csrf disabled="true"/>
     </sec:http>
 
