@@ -56,6 +56,6 @@
 	<bean id="authenticationDetailsSource" class="p.minn.security.cas.springsecurity.auth.MyAuthenticationDetailsSource">
    </bean>
 	<bean id="loginSuccessHandler" class="p.minn.security.cas.springsecurity.auth.LoginSuccessHandler">
-        <property name="defaultTargetUrl" value="login" />
+        <property name="defaultTargetUrl" value="http://go.back.com:8769/admin/login" />
    </bean>
 </beans>
