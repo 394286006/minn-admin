@@ -8,6 +8,9 @@ import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.web.servlet.FilterRegistrationBean;
 import org.springframework.boot.web.servlet.ServletComponentScan;
 import org.springframework.boot.web.support.SpringBootServletInitializer;
+import org.springframework.cloud.client.discovery.EnableDiscoveryClient;
+import org.springframework.cloud.client.loadbalancer.LoadBalanced;
+import org.springframework.cloud.netflix.eureka.EnableEurekaClient;
 import org.springframework.context.annotation.Bean;
 import org.springframework.context.annotation.ImportResource;
 import org.springframework.web.client.RestTemplate;
@@ -22,8 +25,8 @@ import p.minn.filter.MyAuthFilter;
  */
 @SpringBootApplication
 @EnableAutoConfiguration
-//@EnableDiscoveryClient
-//@EnableEurekaClient
+@EnableDiscoveryClient
+@EnableEurekaClient
 //@EnableHystrix
 //@EnableHystrixDashboard
 @ImportResource({"classpath*:/spring/spring-mvc.xml"
@@ -39,11 +42,9 @@ public class Application extends SpringBootServletInitializer{
 	  }
 	
 
-   // @Bean
-    public FilterRegistrationBean myFilterRegistration () {
-        FilterRegistrationBean frb = new FilterRegistrationBean();
-        frb.setFilter(new MyAuthFilter());
-        frb.setUrlPatterns(Arrays.asList("/*"));
-        return frb;
+	@Bean
+    @LoadBalanced
+    RestTemplate restTemplate() {
+        return new RestTemplate();
     }
 }
