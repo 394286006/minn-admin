@@ -45,12 +45,6 @@ import org.springframework.stereotype.Service;
 import p.minn.common.utils.MyGsonMap;
 import p.minn.common.utils.Page;
 import p.minn.common.utils.UtilCommon;
-import p.minn.hadoop.entity.HadoopSpark;
-import p.minn.hadoop.hdfs.HDFSFileUtils;
-import p.minn.hadoop.repository.HadoopSparkDao;
-import p.minn.ignite.IGFSFileUtils;
-import p.minn.jdbc.hive.HadoopHiveJDBC;
-import p.minn.jdbc.spark.HadoopSparkJDBC;
 import p.minn.privilege.utils.Utils;
 
 /**
@@ -63,27 +57,27 @@ import p.minn.privilege.utils.Utils;
 public class HadoopSparkService {
 
 	
-	@Autowired
-	private HDFSFileUtils hdfsFileUtils;
+	//@Autowired
+	//private HDFSFileUtils hdfsFileUtils;
 	
-	@Autowired
-    private HadoopSparkDao hadoopDao;
+	//@Autowired
+  //  private HadoopSparkDao hadoopDao;
     
-    @Autowired
-    private IGFSFileUtils igfsFileUtils;
+   // @Autowired
+   // private IGFSFileUtils igfsFileUtils;
 
 
 	public Object query(String messageBody, String lang) throws Exception  {
 		// TODO Auto-generated method stub
 	  Page page=(Page) Utils.gson2T(messageBody, Page.class);
       Map<String,String> condition=Utils.getCondition(page);
-      int total=hadoopDao.getTotal(lang,condition);
+      int total=0;//hadoopDao.getTotal(lang,condition);
       page.setPage(page.getPage()+1);
       page.setTotal(total);
       
       List<Map<String,Object>> list=null;
       if(total>=0){
-          list=hadoopDao.query(lang,page,condition);
+          list=null;//hadoopDao.query(lang,page,condition);
       }else{
           list=new ArrayList<Map<String, Object>>();
       }
@@ -94,8 +88,8 @@ public class HadoopSparkService {
 
 	public void hdfs2Database(String messageBody) throws Exception{
 	  Map map=UtilCommon.gson2Map(messageBody);
-	  hdfsFileUtils.setInput("input/");
-      hdfsFileUtils.import2db(map.get("name").toString());
+	 // hdfsFileUtils.setInput("input/");
+     // hdfsFileUtils.import2db(map.get("name").toString());
 	}
    
 	
@@ -125,23 +119,23 @@ public class HadoopSparkService {
 		              item.write(disk);    
 		           }
 		      }
-		   hdfsFileUtils.setInput("input/");
-		   hdfsFileUtils.uploadFile(fileName, disk);
+		 //  hdfsFileUtils.setInput("input/");
+		  // hdfsFileUtils.uploadFile(fileName, disk);
 		   rs.put("filename", fileName);
 		   rs.put("info", "ok");
 		return rs;
 	}
 	
 	public Object readHDFSFiles() throws Exception{
-	    hdfsFileUtils.setInput("input/");
-		return hdfsFileUtils.readFiles();
+	    //hdfsFileUtils.setInput("input/");
+		return null;//hdfsFileUtils.readFiles();
 	}
 
   public Object readFileContent(String messageBody) throws Exception {
     // TODO Auto-generated method stub
     Map<String,Object> rs=new HashMap<String,Object>();
     Map map=UtilCommon.gson2Map(messageBody);
-    String content= hdfsFileUtils.readFileContent(map.get("name").toString());
+    String content= null;//hdfsFileUtils.readFileContent(map.get("name").toString());
     rs.put("content", content);
     return rs;
   }

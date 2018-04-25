@@ -12,8 +12,11 @@
 		http://www.springframework.org/schema/context http://www.springframework.org/schema/context/spring-context-4.0.xsd">
    	<mvc:resources mapping="/js/**" location="/js/" />
 	<mvc:resources mapping="/css/**" location="/css/" />
+		<mvc:cors>
+	<mvc:mapping path="/**" />
+</mvc:cors>
     <context:component-scan
-		base-package="p.minn.common.aop.webarg,p.minn.privilege.web,p.minn.oauth.web,p.minn.security.web,p.minn.demo.web,p.minn.workflow.web,p.minn.tensorflow.web,p.minn.lucene.web">
+		base-package="p.minn.common.aop.webarg,p.minn.privilege.web,p.minn.demo.web,p.minn.workflow.web,p.minn.tensorflow.web,p.minn.lucene.web,p.minn.filter,p.minn.security.cas.springsecurity.jwt">
 		<context:include-filter type="annotation"
 			expression="org.springframework.stereotype.Controller" />
 		<context:include-filter type="annotation"
@@ -57,19 +60,12 @@
             </bean>			
   		</mvc:message-converters>
 	</mvc:annotation-driven>
-	    <!--  <mvc:default-servlet-handler />  -->
-	<bean class="org.springframework.web.servlet.view.InternalResourceViewResolver">
-		<property name="prefix" value="/WEB-INF/views/"/>
-		<property name="suffix" value=".jsp"/>
-	</bean>
 	
-	<bean class="org.springframework.web.servlet.handler.SimpleMappingExceptionResolver">  
-		<property name="exceptionMappings">  
-			<props>  
-				<prop key="java.lang.Throwable">error/500</prop>
-            </props>  
-		</property>  
-    </bean>
-    
-    <import resource="privilege-servlet.xml"/>
+	<mvc:interceptors>
+        <mvc:interceptor>
+            <mvc:mapping path="/**"/>
+            <bean class="p.minn.filter.MyAuthInterceptor"></bean>
+        </mvc:interceptor>
+    </mvc:interceptors>
+
 </beans>
